@@ -33,7 +33,7 @@ public class GenerateReadmeTemplate {
             stringBuilder.append(template).append(lineSeparator(2));
         }
 
-        writeFile(new File(docDir, templateName), stringBuilder.toString());
+        writeFile(new File(docDir.getParentFile(), templateName), stringBuilder.toString());
 
     }
 

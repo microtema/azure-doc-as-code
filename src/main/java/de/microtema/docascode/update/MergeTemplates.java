@@ -8,6 +8,8 @@ public class MergeTemplates {
 
     public static void main(String[] args) throws Exception {
 
+        GenerateReadmeTemplate generateReadmeTemplate = new GenerateReadmeTemplate();
+
         File fromFolder = new File(args[0]);
         File toFolder = new File(args[1]);
 
@@ -25,6 +27,8 @@ public class MergeTemplates {
             String serviceName = file.getName();
 
             renameFiles(file, serviceName);
+
+            generateReadmeTemplate.execute(serviceName + ".md", file);
         }
     }
 

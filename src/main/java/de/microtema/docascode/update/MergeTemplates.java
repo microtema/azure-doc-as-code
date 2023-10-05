@@ -8,8 +8,8 @@ public class MergeTemplates {
 
     public static void main(String[] args) throws Exception {
 
-        File fromFolder = new File("./.docs"); //new File(args[0]);
-        File toFolder = new File("./docs"); //new File(args[1]);
+        File fromFolder = new File(args[0]);
+        File toFolder = new File(args[1]);
 
         System.out.println("Merge Templates from ./" + fromFolder.getName() + " to ./" + toFolder.getName());
 

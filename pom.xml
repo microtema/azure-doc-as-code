@@ -12,7 +12,7 @@
     </parent>
 
     <artifactId>dcs-doc-as-code</artifactId>
-    <name>Documentation as Code</name>
+    <name>DCS Doc as Code</name>
 
     <build>
         <plugins>
@@ -23,8 +23,8 @@
                 <configuration>
                     <mainClass>de.microtema.docascode.update.MergeTemplates</mainClass>
                     <arguments>
+                        <argument>${project.basedir}/.docs</argument>
                         <argument>${project.basedir}/docs</argument>
-                        <argument>${project.basedir}/Home</argument>
                     </arguments>
                 </configuration>
                 <executions>

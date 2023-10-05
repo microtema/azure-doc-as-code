@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>de.microtema</groupId>
+        <artifactId>dcs-bootstrap</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../dcs-bootstrap/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>dcs-doc-as-code</artifactId>
+    <name>Documentation as Code</name>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <mainClass>de.microtema.docascode.update.MergeTemplates</mainClass>
+                    <arguments>
+                        <argument>${project.basedir}/docs</argument>
+                        <argument>${project.basedir}/Home</argument>
+                    </arguments>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>replacement</id>
+                        <phase>site</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

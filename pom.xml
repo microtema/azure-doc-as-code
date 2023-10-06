@@ -6,7 +6,7 @@
 
     <version>1.0-SNAPSHOT</version>
     <groupId>de.microtema</groupId>
-    <artifactId>dcs-doc-as-code</artifactId>
+    <artifactId>doc-as-code</artifactId>
     <name>DCS Doc as Code</name>
 
     <properties>

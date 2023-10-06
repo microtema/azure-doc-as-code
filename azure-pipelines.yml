@@ -7,6 +7,8 @@ trigger:
   - develop
   - release/*
   - master
+variables:
+  BRANCH_NAME: $[replace(variables['Build.SourceBranch'], 'refs/heads/', '')]
 stages:
   - stage: transpile
     displayName: Transpile Templates
@@ -47,8 +49,8 @@ stages:
           - script: |
               git config user.name "mario.tema"
               git config user.email "mario.tema@ascent.io"
-              git checkout $(Build.SourceBranch) --
+              git checkout $(BRANCH_NAME) --
               git add --all
               git commit -m "DX-1000 Update Docu within build-id: $(Build.BuildId)"
-              git push origin $(Build.SourceBranch)
+              git push origin $(BRANCH_NAME)
             displayName: Git Commit

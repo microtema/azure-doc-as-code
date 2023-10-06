@@ -26,7 +26,7 @@ stages:
         pool:
           vmImage: ubuntu-latest
         steps:
-          - script: mvn clean compile org.codehaus.mojo:exec-maven-plugin:3.0.0:java
+          - script: echo mvn clean compile org.codehaus.mojo:exec-maven-plugin:3.0.0:java
             displayName: 'Run a one-line script'
   - stage: publish
     displayName: Publish Templates
@@ -36,5 +36,16 @@ stages:
         pool:
           vmImage: ubuntu-latest
         steps:
-          - script: mvn clean
-            displayName: 'Run a one-line script'
+          - checkout: self
+            persistCredentials: true
+            fetchDepth: 0
+          - script: mvn clean compile org.codehaus.mojo:exec-maven-plugin:3.0.0:java
+            displayName: Publish Templates
+          - script: |
+              git config user.name "mario.tema"
+              git config user.email "mario.tema@ascent.io"
+              git checkout $(variables['Build.SourceBranch']) --
+              git add --all
+              git commit -m "DX-1000 Update Docu within build-id: $(Build.BuildId)"
+              git push origin $(variables['Build.SourceBranch'])
+            displayName: Git Commit

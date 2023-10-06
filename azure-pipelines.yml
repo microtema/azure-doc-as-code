@@ -41,10 +41,7 @@ stages:
           - checkout: self
             persistCredentials: true
             fetchDepth: 0
-          - script: |
-              git branch
-              mvn clean compile org.codehaus.mojo:exec-maven-plugin:3.0.0:java
-              git status
+          - script: mvn clean compile org.codehaus.mojo:exec-maven-plugin:3.0.0:java
             displayName: Publish Templates
           - script: |
               git config user.name "mario.tema"

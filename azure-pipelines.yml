@@ -8,11 +8,11 @@ trigger:
   - release/*
   - master
 stages:
-  - stage: initialize
-    displayName: Initialize
+  - stage: transpile
+    displayName: Transpile Templates
     jobs:
-      - job: initialize
-        displayName: Initialize
+      - job: transpile
+        displayName: Transpile Templates
         pool:
           vmImage: ubuntu-latest
         steps:

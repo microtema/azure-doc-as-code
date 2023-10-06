@@ -26,8 +26,8 @@ stages:
         pool:
           vmImage: ubuntu-latest
         steps:
-          - displayName: 'Run a one-line script'
-            script: mvn clean compile org.codehaus.mojo:exec-maven-plugin:3.0.0:java
+          - script: mvn clean compile org.codehaus.mojo:exec-maven-plugin:3.0.0:java
+            displayName: 'Run a one-line script'
   - stage: publish
     displayName: Publish Templates
     jobs:

@@ -16,8 +16,8 @@ stages:
         pool:
           vmImage: ubuntu-latest
         steps:
-          - displayName: 'Run a one-line script'
-            script: mvn --version
+          - script: mvn --version
+            displayName: 'Run a one-line script'
   - stage: merge
     displayName: Merge Templates
     jobs:
@@ -36,5 +36,5 @@ stages:
         pool:
           vmImage: ubuntu-latest
         steps:
-          - displayName: 'Run a one-line script'
-            script: mvn clean
+          - script: mvn clean
+            displayName: 'Run a one-line script'

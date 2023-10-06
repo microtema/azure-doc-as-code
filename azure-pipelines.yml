@@ -45,11 +45,10 @@ stages:
               git status
             displayName: Publish Templates
           - script: |
-              git branch
               git config user.name "mario.tema"
               git config user.email "mario.tema@ascent.io"
-              git checkout $(variables['Build.SourceBranch']) --
+              git checkout $(Build.SourceBranch) --
               git add --all
               git commit -m "DX-1000 Update Docu within build-id: $(Build.BuildId)"
-              git push origin $(variables['Build.SourceBranch'])
+              git push origin $(Build.SourceBranch)
             displayName: Git Commit

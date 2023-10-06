@@ -7,12 +7,6 @@ trigger:
   - develop
   - release/*
   - master
-variables:
-  systemName: DCS Doc-as-Code
-  version: 1.0.0-SNAPSHOT
-  isDevelop: $[eq(variables['Build.SourceBranch'], 'refs/heads/develop')]
-  isRelease: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/release/')]
-  isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 stages:
   - stage: initialize
     displayName: Initialize
@@ -22,13 +16,25 @@ stages:
         pool:
           vmImage: ubuntu-latest
         steps:
-          - script: mvn --version
-            displayName: 'Run a one-line script'
-          - task: Maven@3
-            inputs:
-              mavenPomFile: 'pom.xml'
-              mavenOptions: '-Xmx3072m'
-              javaHomeOption: 'JDKVersion'
-              jdkVersionOption: '1.8'
-              jdkArchitectureOption: 'x64'
-              goals: 'clean'
+          - displayName: 'Run a one-line script'
+            script: mvn --version
+  - stage: merge
+    displayName: Merge Templates
+    jobs:
+      - job: merge
+        displayName: Merge Templates
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - displayName: 'Run a one-line script'
+            script: mvn clean compile org.codehaus.mojo:exec-maven-plugin:3.0.0:java
+  - stage: publish
+    displayName: Publish Templates
+    jobs:
+      - job: publish
+        displayName: Publish Templates
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - displayName: 'Run a one-line script'
+            script: mvn clean

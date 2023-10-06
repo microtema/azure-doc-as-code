@@ -39,9 +39,13 @@ stages:
           - checkout: self
             persistCredentials: true
             fetchDepth: 0
-          - script: mvn clean compile org.codehaus.mojo:exec-maven-plugin:3.0.0:java
+          - script: |
+              git branch
+              mvn clean compile org.codehaus.mojo:exec-maven-plugin:3.0.0:java
+              git status
             displayName: Publish Templates
           - script: |
+              git branch
               git config user.name "mario.tema"
               git config user.email "mario.tema@ascent.io"
               git checkout $(variables['Build.SourceBranch']) --
